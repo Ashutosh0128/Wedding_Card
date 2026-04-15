@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suyog & Dipti Wedding</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Birthstone+Bounce&family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --peach: #fdf5f2;
+      --blush: #f4b4ab;
+      --gold: #c5a059;
+      --gold-light: #e0c58e;
+      --gold-dark: #a67c37;
+      --white: #ffffff;
+      --text-dark: #3a3a3a;
+      --glass: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.5);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--peach);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    h2 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 2.2rem;
+      color: var(--gold-dark);
+      margin-bottom: 50px;
+      position: relative;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    h3 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1.3rem;
+      color: var(--gold-dark);
+      margin-bottom: 15px;
+      letter-spacing: 2px;
+    }
+
+    /* ENTRY SCREEN */
+    #entry-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--peach);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 2000;
+      text-align: center;
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .entry-content {
+      position: relative;
+      padding: 60px;
+      border: 1px solid var(--gold-light);
+      background: white;
+      box-shadow: 0 20px 50px rgba(197, 160, 89, 0.1);
+    }
+
+    .entry-content::before,
+    .entry-content::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--gold);
+    }
+
+    .entry-content::before {
+      top: 10px;
+      left: 10px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .entry-content::after {
+      bottom: 10px;
+      right: 10px;
+      border-left: none;
+      border-top: none;
+    }
+
+    #entry-screen h1 {
+      font-family: 'Lucida Calligraphy', cursive;
+      font-size: clamp(4rem, 15vw, 6.5rem);
+      color: var(--gold);
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    #entry-screen p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      color: var(--text-dark);
+    }
+
+    #entry-screen button {
+      padding: 18px 50px;
+      background: var(--gold);
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+    }
+
+    #entry-screen button:hover {
+      background: var(--text-dark);
+      letter-spacing: 5px;
+      transform: translateY(-2px);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 600px;
+      padding: 15px 30px;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      display: flex;
+      justify-content: space-around;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      /* Move text to bottom */
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 10vh;
+      /* Professional spacing from bottom */
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0) 100%),
+        url('photo1.jpg') center/cover no-repeat;
+      z-index: -1;
+      filter: contrast(1.05) brightness(1.02);
+      /* Subtle quality enhancement */
+      animation: slowZoom 20s infinite alternate linear;
+    }
+
+    @keyframes slowZoom {
+      from {
+        transform: scale(1);
+      }
+
+      to {
+        transform: scale(1.1);
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Birthstone Bounce', cursive;
+      font-size: clamp(5rem, 15vw, 8rem);
+      text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.4);
+      margin-bottom: 0px;
+    }
+
+    .hero p {
+      font-family: 'Cinzel Decorative', serif;
+      font-weight: 400;
+      letter-spacing: 6px;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      margin-top: -10px;
+    }
+
+    /* COUNTDOWN */
+    #timer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .time-box {
+      background: var(--white);
+      padding: 30px 15px;
+      border-radius: 2px;
+      border: 1px solid var(--peach);
+      box-shadow: 0 10px 25px rgba(197, 160, 89, 0.05);
+      position: relative;
+    }
+
+    .time-box::after {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border: 1px solid rgba(197, 160, 89, 0.1);
+    }
+
+    .time-box span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--gold-dark);
+      display: block;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .time-box .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--white);
+      padding: 45px;
+      border-radius: 4px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+      border: 1px solid var(--peach);
+      margin: 30px auto;
+      max-width: 700px;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(197, 160, 89, 0.1);
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(197, 160, 89, 0.1);
+      border-color: var(--gold-light);
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    /* PHOTOS */
+    .photo-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .photo-wrapper {
+      padding: 15px;
+      background: white;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--gold-light);
+      transition: all 0.6s ease;
+    }
+
+    .photo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    .photo-wrapper:hover {
+      transform: scale(1.02) rotate(1deg);
+      box-shadow: 0 25px 70px rgba(197, 160, 89, 0.15);
+    }
+
+    /* BUTTONS */
+    .btn-premium {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, var(--blush), #ff9a9e);
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 30px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-premium:hover {
+      transform: scale(1.05);
+    }
+
+    /* MUSIC BUTTON */
+    #music-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 55px;
+      height: 55px;
+      border-radius: 0;
+      background: white;
+      border: 1px solid var(--gold);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 1001;
+      box-shadow: 0 10px 25px rgba(197, 160, 89, 0.2);
+      transition: all 0.4s;
+    }
+
+    #music-btn:hover {
+      background: var(--gold);
+      color: white;
+    }
+
+    /* HEARTS */
+    .hearts-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      opacity: 0.6;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* SCROLL ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section {
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    footer {
+      background: #fffafa;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      #timer {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ENTRY -->
+  <div id="entry-screen">
+    <div class="entry-content reveal active">
+      <h1>Suyog & Dipti</h1>
+      <p>Save Our Date</p>
+      <button onclick="enterSite()">Enter Invitation</button>
+    </div>
+  </div>
+
+  <!-- HEARTS -->
+  <div class="hearts-container"></div>
+
+  <!-- MUSIC -->
+  <audio id="bg-music" loop>
+    <source src="Wed_song.mpeg" type="audio/mpeg">
+  </audio>
+  <button id="music-btn" onclick="toggleMusic()">🎵</button>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#details">Details</a>
+    <a href="#photos">Photos</a>
+    <a href="#location">Location</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="reveal active">
+      <h1>Suyog & Dipti</h1>
+      <p>We’re getting married 💍</p>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="reveal">
+    <h2>The Grand Countdown</h2>
+    <div id="timer">
+      <div class="time-box">
+        <span id="days">00</span>
+        <div class="label">Days</div>
+      </div>
+      <div class="time-box">
+        <span id="hours">00</span>
+        <div class="label">Hours</div>
+      </div>
+      <div class="time-box">
+        <span id="minutes">00</span>
+        <div class="label">Minutes</div>
+      </div>
+      <div class="time-box">
+        <span id="seconds">00</span>
+        <div class="label">Seconds</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section id="details" class="reveal">
+    <h2>Wedding Events</h2>
+
+    <div class="card">
+      <span class="card-icon">💍</span>
+      <h3>The Wedding Ceremony</h3>
+      <p><strong>📅 Sunday, April 26, 2026</strong></p>
+      <p>⏰ 11:35 AM</p>
+      <p>Shree Samarth Ranganath Maharaj Hall</p>
+      <p>Koproli, Pen, Raigad</p>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🌼</span>
+      <h3>Haldi Ceremony</h3>
+      <p><strong>📅 Saturday, April 25, 2026</strong></p>
+      <p>⏰ 8:00 AM</p>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">👑</span>
+      <h3>Groom’s Address</h3>
+      <p>Bahiramkotak, Vashi, Pen, Raigad</p>
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section id="photos" class="reveal">
+    <h2>Our Moments ❤️</h2>
+    <div class="photo-container">
+      <div class="photo-wrapper">
+        <img src="photo1.jpg">
+      </div>
+      <div class="photo-wrapper">
+        <img src="photo2.jpg">
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section id="location" class="reveal">
+    <h2>Locations 📍</h2>
+
+    <div class="card">
+      <span class="card-icon">💍</span>
+      <h3>Wedding Venue</h3>
+      <p>Shree Samarth Ranganath Maharaj Sabhagruh, Koproli, Pen, Raigad</p>
+      <a href="https://maps.app.goo.gl/xMsjHZq3N4PJeSfR7?g_st=ac" target="_blank" class="btn-premium">
+        📍 View Location
+      </a>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🌼</span>
+      <h3>Haldi Ceremony</h3>
+      <p>Haldi Venue</p>
+      <a href="https://maps.app.goo.gl/TbepqrAtKxH7i4Q5A?g_st=ac" target="_blank" class="btn-premium">
+        📍 View Location
+      </a>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">👑</span>
+      <h3>Groom’s Address</h3>
+      <p>Bahiramkotak, Pen, Raigad</p>
+      <a href="https://maps.app.goo.gl/TbepqrAtKxH7i4Q5A?g_st=ac" target="_blank" class="btn-premium">
+        📍 View Location
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Thank you for being part of our special day ❤️</p>
+  </footer>
+
+  <script>
+    // ENTRY
+    function enterSite() {
+      const entry = document.getElementById("entry-screen");
+      entry.style.opacity = "0";
+      setTimeout(() => entry.style.display = "none", 1000);
+      document.getElementById("bg-music").play();
+    }
+
+    // COUNTDOWN
+    const weddingDate = new Date("April 26, 2026 11:35:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const gap = weddingDate - now;
+
+      if (gap > 0) {
+        const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+        const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = d.toString().padStart(2, '0');
+        document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+        document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+        document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // MUSIC
+    const music = document.getElementById("bg-music");
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        document.getElementById("music-btn").innerText = "🎵";
+      } else {
+        music.pause();
+        document.getElementById("music-btn").innerText = "🔇";
+      }
+    }
+
+    // HEARTS
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      const emojis = ["💖", "💗", "🌸", "💍", "💕"];
+      heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (15 + Math.random() * 20) + "px";
+      heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+      document.querySelector(".hearts-container").appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 800);
+
+    // SCROLL REVEAL
+    function reveal() {
+      const reveals = document.querySelectorAll(".reveal");
+      reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const elementVisible = 150;
+        if (elementTop < windowHeight - elementVisible) {
+          el.classList.add("active");
+        }
+      });
+    }
+    window.addEventListener("scroll", reveal);
+    reveal(); // Initial check
+  </script>
+
+</body>
+
+</html>
